@@ -1,4 +1,3 @@
-
 /*
  *  This scripts prevents sidebars from being cutoff if the content is not longer than the sidebars
  */
@@ -22,14 +21,14 @@ function grhHeaderAutoHeight(){
     image.src = imageSrc;*/
     
     var headerImage = new Image();
-    headerImage.src = jQuery('#title-area').css('background-image').replace(/"/g,"").replace(/url\(|\)$/ig, "");
+    headerImage.src = jQuery( grh.title_area ).css( 'background-image' ).replace(/"/g,"").replace(/url\(|\)$/ig, "");
     
     
     
     if(headerImage) {
 
 	    var width = headerImage.width,
-	        currentWidth = jQuery( '#title-area' ).width(),
+	        currentWidth = jQuery( grh.title_area ).width(),
 	        ratio = currentWidth/width,
 	        height = headerImage.height*ratio,
 	        body = jQuery( 'body' ).width();
@@ -40,7 +39,7 @@ function grhHeaderAutoHeight(){
 		if( body < 768 ){
 	    
 			if( ratio < 1 ){
-				jQuery( '#title-area' ).attr( 'style', 'height: '.concat( height, 'px !important' ) );
+				jQuery( grh.title_area ).attr( 'style', 'height: '.concat( height, 'px !important' ) );
 			}
 	
 		}
