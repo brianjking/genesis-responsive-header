@@ -45,8 +45,9 @@ function grh_css() {
 			$background = $value['image'] ? sprintf( 'background:url(%s)no-repeat center !important;background-size:contain!important;width:100%%!important;', $value['image'] ) : '';
 			//$image_size = $value['image'] ? @getimagesize($value['image']) : '';
 			$height = $value['height'] ? sprintf( 'height:%spx!important;', $value['height'] ) : ''; 
-			
-			printf( '@media only screen and (max-width: %spx){ #header{ background-image:none!important; %s height:auto!important;min-height:0!important;width:100%%; } #title-area{ %s%s } }', $size+15, $color, $background, $height );
+			$output = genesis_html5() ? 
+				sprintf( '@media only screen and (max-width: %spx){ .site-header{ background-image:none!important; %s height:auto!important;min-height:0!important;width:100%%; } .title-area{ %s%s } }', $size+15, $color, $background, $height ) :
+				sprintf( '@media only screen and (max-width: %spx){ #header{ background-image:none!important; %s height:auto!important;min-height:0!important;width:100%%; } #title-area{ %s%s } }', $size+15, $color, $background, $height );
 			
 		}
 		
