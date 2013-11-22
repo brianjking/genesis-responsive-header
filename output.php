@@ -83,7 +83,19 @@ function grh_is_multi_array_empty($multiarray) {
 * @since 0.1
 */
 function grh_enqueue_scripts() {
-	if( ! grh_get_option( 'disable-script' ) )
+	if( ! grh_get_option( 'disable-script' ) ) {
 		wp_enqueue_script( 'grh-header-height', plugins_url( '/genesis-responsive-header/js/resize-header.js' , GRH_PLUGIN_DIR ), array('jquery'), '0.1', true );
+		// Localize Script
+		
+		// This enables you to create variable variables in JS that will be referred to as gs.greeting
+		$args = array(
+			'header'     => genesis_html5() ? '.site-header' : '#header',
+			'title_area' => genesis_html5() ? '.title-area' : '#title-area',
+		);
+		
+		// @link http://codex.wordpress.org/Function_Reference/wp_localize_script
+		// wp_localize_script( REGISTERED-HANDLE, OBJECT_NAME, OBJECT_DATA );
+		wp_localize_script( 'grh-header-height', 'grh', $args );
+	}
 }
 add_action('wp_enqueue_scripts', 'grh_enqueue_scripts');
